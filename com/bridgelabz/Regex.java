@@ -15,10 +15,10 @@ public class Regex {
         String password = scanner.next();
         scanner.close();
     /*
-    Password has at least 8 character . shows anything that we can take anything uppercase lowercase letter
-    or number or special character but at least 8 inputs should be there
+    Password has at least 8 character . shows anything it can take as input or ? shows that it Matches up
+    exactly upon one character and * means matches zero or more time the preceding character
      */
-        Pattern pattern = Pattern.compile(".{8,}");
+        Pattern pattern = Pattern.compile("(?=.*[A-Z])" + ".{8,}");
         Matcher matcher = pattern.matcher(password);
 
         if (pattern.matcher(password).matches()) {
@@ -31,7 +31,7 @@ public class Regex {
     /*
     Second Method to achieve output
      */
-        Boolean result = Pattern.compile("[a-z A-Z 0-9]{8,}").matcher("Password123").matches();
+        Boolean result = Pattern.compile("(?=.*[A-Z])" + ".{8,}").matcher("Password123").matches();
         System.out.println(result);
 
     }
