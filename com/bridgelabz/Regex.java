@@ -5,46 +5,34 @@ import java.util.regex.*;
 
 public class Regex {
 
-    public static String validateMobileNumber(String Number) {
-        /*
-        (91): country code of number should be 91 ? is used to matches up exactly one character
-        [7-9] means : starting of the number may contain a digit between 7 to 9
-        [0-9]{9} means : it contains any digits from 0 to 9 and there should be 9 digits
-         */
-
-        String MobileNumber = ("(91)?" + "[1-9]" + "[0-9]{9}");
-        Pattern pattern = Pattern.compile(MobileNumber);
-        if (pattern.matcher(Number).matches()) {
-            return "Valid Mobile Number";
-        } else {
-            return "Invalid Mobile Number";
-        }
-
-    }
-
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         /*
-        taking Mobile number as input by the user
+        taking Password as input by the user
          */
-        System.out.println("Enter Mobile Number");
-        String number = scanner.next();
+        System.out.println("Enter Password");
+        String password = scanner.next();
         scanner.close();
-        System.out.println(validateMobileNumber(number));
-  /*
-  Second way to get output
-
-   */
-        Boolean result = Pattern.compile("^91{1}" + "\s" + "[0-9]{1,10}").matcher("91 5624815891").matches();
-        System.out.println(result);
 /*
-third way to get output
+Password has at least 8 character . shows anything that we can take anything uppercase lowercase letter
+or number or special character but at least 8 inputs should be there
  */
-        Pattern pattern = Pattern.compile("^91{1}" + "\s" + "[0-9]{1,10}");
-        Matcher matcher = pattern.matcher("91 9856415425415");
-        boolean result2 = matcher.matches();
-        System.out.println(result2);
+        Pattern pattern = Pattern.compile(".{8,}");
+        Matcher matcher = pattern.matcher(password);
+
+        if (pattern.matcher(password).matches()) {
+            System.out.println("Password is set");
+
+        } else {
+            System.out.println("Please Enter valid input Password is not Set");
+        }
+
+/*
+Second Method to achieve output
+ */
+Boolean result = Pattern.compile("[a-z A-Z 0-9]{8,}").matcher("Password123").matches();
+System.out.println(result);
 
     }
 }
