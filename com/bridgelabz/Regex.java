@@ -1,55 +1,55 @@
 package com.bridgelabz;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.*;
 
 public class Regex {
-    /**
-     * Setting password which has at least 8 character one uppercase letter and one numeric number and
-     * at least one special character and no whitespace allowed
-     */
-    public static void checkPassword(String password) {
-
-        Pattern pattern = Pattern.compile("(?=.*[A-Z])" + "(?=.*[0-9])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$)" + ".{8,}");
-        Matcher matcher = pattern.matcher(password);
-        boolean result = matcher.matches();
-        System.out.println(result);
-
-    }
-
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> arrayList = new ArrayList<>();
+
         /*
-        taking Password as input by the user
+         Taking an Arraylist to check Various email whether it is correct or not and adding emails in the list
          */
-        System.out.println("Enter Password");
-        String password1 = scanner.next();
-        System.out.println("Enter Second Password");
-        String password2 = scanner.next();
-        scanner.close();
-        checkPassword(password1);
-    /*
-     for at least one uppercase letter this equation uses (?=.*[A-Z]) , for at least one digit (?=.*[0-9])
-     for no whitespace allowed in the string this one uses (?=.*[@#$%^&+=])
-     */
-        Pattern pattern = Pattern.compile("(?=.*[A-Z])" + "(?=.*[0-9])" + "(?=.*[@#$%^&+=])" + ".{8,}");
 
+        arrayList.add("abc111@abc.com");
+        arrayList.add("abc-100@abc.com");
+        arrayList.add("abc.100@yahoo.com");
+        arrayList.add("abc+100@gmail.com");
+        arrayList.add("abc@1.com");
+        arrayList.add("abc-100@yahoo.com");
+        arrayList.add("abc_pqr@gmail.com");
+        arrayList.add("abc.100@abc.com.au");
+        arrayList.add("abc()*@gmail.com");
+        arrayList.add("abc@%*.com");
+        arrayList.add("abc@abc@gmail.com");
+        arrayList.add("abc@gmail.com.1a");
+        arrayList.add(".abc@abc.com");
+/*
+applying the pattern to check whether the email matches the pattern or not
+ */
 
-        if (pattern.matcher(password2).matches()) {
-            System.out.println("Password is set");
+        String emailRegex = "^[a-zA-Z0-9]+([._+-][a-zA-Z0-9]+)*" + "@([a-zA-Z0-9][-]?)+[.][a-zA-Z]{2,4}([.]{2,4})?$";
+        Pattern pattern = Pattern.compile(emailRegex);
 
-        } else {
-            System.out.println("Please Enter valid input Password is not Set");
+        for (int i = 0; i < arrayList.size(); i++) {
+         /*
+         using for-loop checking every email whether it matches the defined pattern or not
+          */
+
+            if (pattern.matcher(arrayList.get(i)).matches()) {
+
+                System.out.println("valid");
+
+            } else {
+                System.out.println("invalid");
+            }
+
         }
 
-    /*
-    if we write .{8} in middle or starting then it will not work we have to first add conditions we want uppercase
-     lowercase then number of characters. In this whitespace is allowed but in above two it is not allowed
-     */
-        Boolean result = Pattern.compile("(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=.*[0-9])" + ".{8,}").matcher("Pass word123#").matches();
-        System.out.println(result);
 
     }
 }
+
